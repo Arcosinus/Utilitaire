@@ -1,10 +1,13 @@
 package com.example.utilitaire.controller;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,15 +16,11 @@ public class MainController implements Initializable {
     @FXML
     private Menu menuIMCcalc;
     @FXML
-    private Menu menuLib;
+    private MenuItem Yes;
     @FXML
     private AnchorPane main;
     @FXML
     private HBox formIMCcalc;
-    @FXML
-    private HBox formLib;
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         main.getChildren().removeAll(formIMCcalc);
@@ -29,11 +28,8 @@ public class MainController implements Initializable {
             main.getChildren().removeAll(formIMCcalc);
             main.getChildren().add(formIMCcalc);
         });
-
-        main.getChildren().removeAll(formLib);
-        menuLib.setOnMenuValidation(launchLibrary -> {
-            main.getChildren().removeAll(formLib);
-            main.getChildren().add(formLib);
+        Yes.setOnAction(exit ->{
+            Platform.exit();
         });
     }
 }
