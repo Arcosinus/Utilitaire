@@ -23,11 +23,26 @@ public class RomainController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         inputNombre.setOnKeyTyped(CtoR -> {
-            inputChiffresRomains.setText(ChiffresToRomain(Integer.parseInt(inputNombre.getText())));
+            if (inputNombre.getText().length() > 0) {
+                try {
+                    inputChiffresRomains.setText(ChiffresToRomain(Integer.parseInt(inputNombre.getText())));
+                }
+                catch (Exception e){
+                    inputNombre.setText("Please enter only numbers");
+                }
+            }
+
+            else {
+                inputChiffresRomains.setText("");
+            }
         });
 
         inputChiffresRomains.setOnKeyTyped(RtoC -> {
-            inputNombre.setText(RomainToChiffres(inputChiffresRomains.getText()));
+            if (inputChiffresRomains.getText().length()>0 ){
+            inputNombre.setText(RomainToChiffres(inputChiffresRomains.getText()));}
+            else {
+                inputNombre.setText("");
+            }
         });
 
 
@@ -38,12 +53,13 @@ public class RomainController implements Initializable {
 
 
     public String RomainToChiffres(String processedChiffresRomains){
+
         //initialization de deux tableaux contenant la liste des chiffres romain par ordre croissant
         //et des valeures conrespondantes en base 10 avec index concordants (I et 1 sont tout deux à l'index 0).
         List<Integer> chiffres = Arrays.asList(1, 5, 10, 50, 100, 500, 1000);
         List<String> chiffresRomains = Arrays.asList("I", "V", "X", "L", "C", "D", "M");
 
-        //exemple d'input utilisateur à remplacer par un getText;
+
 
 
         //On définit le niveau du premier chiffre romain de l'input c'est à dire son index (ind) dans le tableau des chiffres
@@ -56,9 +72,8 @@ public class RomainController implements Initializable {
         int convertion = 0;
 
         //boucle pour chaque Lettres (chiffres romains) que contient input
-        for (int i = 0; i< processedChiffresRomains.length(); i++){
-            chiffresRomains.indexOf(processedChiffresRomains.substring(i, i + 1));
-        }
+
+
         for (int i = 0; i < processedChiffresRomains.length(); i++) {
             //on stock le niveau de la lettre situé à l'index i de input
             level = chiffresRomains.indexOf(processedChiffresRomains.substring(i, i + 1));
@@ -84,7 +99,11 @@ public class RomainController implements Initializable {
             }
             System.out.println("intération : " + i + "  current level is : " + level + "    la convertion vaut : " + convertion);
         }
-        return Integer.toString(convertion);
+        if (ChiffresToRomain(convertion).equals(processedChiffresRomains)){
+        return Integer.toString(convertion);}
+        else {
+            return "please return a correct roman number";
+        }
     }
 
     public String ChiffresToRomain(int processedNombre){
@@ -135,6 +154,7 @@ public class RomainController implements Initializable {
         else {
             convertion = "please enter a number between 1 and 3999";
         }
+
         return convertion;
     }
 
