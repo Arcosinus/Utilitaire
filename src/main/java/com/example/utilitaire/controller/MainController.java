@@ -27,7 +27,7 @@ public class MainController implements Initializable {
     @FXML
     private Menu menuLib;
     @FXML
-    private HBox formLib;
+    private VBox formLib;
 
     @FXML
     private Menu menuArmee;
@@ -51,21 +51,21 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        mainAnchor.getChildren().removeAll(formBHConverter/**, formIMCcalc, formLib, formArmee, formRomain**/);
+        mainAnchor.getChildren().removeAll(formBHConverter, formIMCcalc, formLib, formRomain/**, formArmee, **/);
 
         menuIMCcalc.setOnMenuValidation(launchbinary ->{
-            main.getChildren().removeAll(formIMCcalc,formLib,formBHConverter/**,formRomain,formArmee**/);
-            main.getChildren().add(formIMCcalc);
+            mainAnchor.getChildren().removeAll(formIMCcalc,formLib,formBHConverter,formRomain/**,formArmee**/);
+            mainAnchor.getChildren().add(formIMCcalc);
         });
 
         menuLib.setOnMenuValidation(launchLibrary -> {
-            main.getChildren().removeAll(formIMCcalc,formLib,formBHConverter/**,formRomain,formArmee**/);
-            main.getChildren().add(formLib);
+            mainAnchor.getChildren().removeAll(formIMCcalc,formLib,formBHConverter,formRomain/**formArmee**/);
+            mainAnchor.getChildren().add(formLib);
         });
 
         menuBHConverter.setOnMenuValidation(launchBHconverter ->{
-            main.getChildren().removeAll(formIMCcalc,formLib,formBHConverter/**,formRomain,formArmee**/);
-            main.getChildren().add(formBHConverter);
+            mainAnchor.getChildren().removeAll(formIMCcalc,formLib,formBHConverter,formRomain/**formArmee**/);
+            mainAnchor.getChildren().add(formBHConverter);
         });
 
         //menuArmee.setOnMenuValidation(launchArmee ->{
@@ -73,10 +73,10 @@ public class MainController implements Initializable {
         //    main.getChildren().add(formArmee);
         //});
 
-        //menuRomain.setOnMenuValidation(launchRomain ->{
-        //    main.getChildren().removeAll(formIMCcalc,formLib,formBHConverter/**,formRomain,formArmee**/)
-        //    main.getChildren().add(formRomain);
-        //});
+        menuRomain.setOnMenuValidation(launchRomain ->{
+            mainAnchor.getChildren().removeAll(formIMCcalc,formLib,formBHConverter,formRomain/**formArmee**/);
+            mainAnchor.getChildren().add(formRomain);
+        });
 
         Close.setOnAction(event -> {
             Platform.exit();

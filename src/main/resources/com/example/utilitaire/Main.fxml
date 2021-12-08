@@ -44,29 +44,34 @@
       <menus>
             <Menu fx:id="menuLib" mnemonicParsing="false" text="Biblio">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Une app pour archiver et gérer des livres dans une bibliothèque." />
+                  <MenuItem mnemonicParsing="false" text="Appli pour bibliothèque" />
                </items></Menu>
         <Menu fx:id="menuBHConverter" mnemonicParsing="false" text="Convert Bin/Hexa">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Une app pour convertir des nombres décimaux en binaire et hexadécimal." />
+                  <MenuItem mnemonicParsing="false" text="Appli pour convertir en binaire et hexadécimal" />
                </items></Menu>
-            <Menu fx:id="menuRomain" mnemonicParsing="false" text="Convert Romain" />
+            <Menu fx:id="menuRomain" mnemonicParsing="false" text="Convert Romain">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Appli pour convertir en chiffres romains" />
+               </items></Menu>
             <Menu fx:id="menuIMCcalc" mnemonicParsing="false" text="IMC">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Une app pour calcul l'indice IMC d'une personne." />
+                  <MenuItem mnemonicParsing="false" text="Appli pour calculer son IMC" />
                </items></Menu>
             <Menu fx:id="menuArmee" mnemonicParsing="false" text="Armée" />
-            <Menu mnemonicParsing="false" text="                                                          |" />
-            <Menu fx:id="Close" mnemonicParsing="false" text="Close">
+            <Menu mnemonicParsing="false" text="|" />
+            <Menu mnemonicParsing="false" text="   Close App">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Are you sure?" />
+                  <MenuItem fx:id="Close" mnemonicParsing="false" text="Vous êtes sur?" />
                </items></Menu>
       </menus>
     </MenuBar>
-    <AnchorPane fx:id="mainAnchor" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" visible="false" VBox.vgrow="ALWAYS">
+    <AnchorPane fx:id="mainAnchor" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
+            <fx:include fx:id="formIMCcalc" source="CalcIMC.fxml" />
             <fx:include fx:id="formBHConverter" source="Converter.fxml" />
-         </children>
-      </AnchorPane>
+            <fx:include fx:id="formRomain" source="ConvertionRomain.fxml" />
+            <fx:include fx:id="formLib" source="library.fxml" />
+         </children></AnchorPane>
   </children>
 </VBox>
