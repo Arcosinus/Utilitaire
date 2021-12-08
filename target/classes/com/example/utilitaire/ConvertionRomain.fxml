@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.utilitaire.RomainController">
+   <children>
+      <VBox prefHeight="400.0" prefWidth="453.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="313.0" text="Chiffres" />
+            <TextField fx:id="inputNombre" prefHeight="26.0" prefWidth="78.0" />
+         </children>
+      </VBox>
+      <VBox prefHeight="400.0" prefWidth="462.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="356.0" text="Chifrres romains" />
+            <TextField fx:id="inputChiffresRomains" />
+         </children>
+      </VBox>
+   </children>
+</HBox>
