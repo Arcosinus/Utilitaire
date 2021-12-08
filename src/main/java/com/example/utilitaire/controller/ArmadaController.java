@@ -20,8 +20,8 @@ public class ArmadaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         TreeItem<String> armada = new TreeItem<>("Armée");
-        TreeItem<String> general = new TreeItem<>("Général");
-        TreeItem<String> soldat = new TreeItem<>("Soldat");
+        TreeItem<String> general = new TreeItem<>("GénéralA");
+        TreeItem<String> soldat = new TreeItem<>("SoldatA");
         general.getChildren().add(soldat);
         armada.getChildren().add(general);
         treemada.setRoot(armada);
