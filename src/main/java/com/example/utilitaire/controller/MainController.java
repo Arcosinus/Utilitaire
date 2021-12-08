@@ -28,7 +28,7 @@ public class MainController implements Initializable {
             main.getChildren().removeAll(formIMCcalc);
             main.getChildren().add(formIMCcalc);
         });
-        yes.setOnMenuValidation(exit ->{
+        yes.setOnAction(exit ->{
             Platform.exit();
         });
     }
