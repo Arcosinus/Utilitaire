@@ -44,7 +44,7 @@
       <menus>
             <Menu fx:id="menuLib" mnemonicParsing="false" text="Biblio">
                <items>
-                  <MenuItem mnemonicParsing="false" text="LibraryApp" />
+                  <MenuItem mnemonicParsing="false" text="menuLib" />
                </items></Menu>
         <Menu fx:id="menubinary" mnemonicParsing="false" text="Convert Binaire" />
             <Menu mnemonicParsing="false" text="Convert Hexa" />
@@ -55,11 +55,7 @@
                </items></Menu>
             <Menu mnemonicParsing="false" text="Armée" />
             <Menu mnemonicParsing="false" text="|" />
-            <Menu mnemonicParsing="false" text="   Close App">
-               <items>
-                  <MenuItem fx:id="Yes" mnemonicParsing="false" text="Yes" />
-                  <MenuItem fx:id="No" mnemonicParsing="false" text="No" />
-               </items></Menu>
+            <Menu mnemonicParsing="false" text="   Close App" />
       </menus>
     </MenuBar>
     <AnchorPane fx:id="main" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
