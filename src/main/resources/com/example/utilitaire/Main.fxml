@@ -34,6 +34,7 @@
 
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
@@ -45,13 +46,18 @@
         <Menu fx:id="menubinary" mnemonicParsing="false" text="Convert Binaire" />
             <Menu mnemonicParsing="false" text="Convert Hexa" />
             <Menu mnemonicParsing="false" text="Convert Romain" />
-            <Menu mnemonicParsing="false" text="IMC" />
+            <Menu fx:id="menuIMCcalc" mnemonicParsing="false" text="IMC">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Calcul de l'IMC" />
+               </items></Menu>
             <Menu mnemonicParsing="false" text="Armée" />
             <Menu mnemonicParsing="false" text="|" />
             <Menu mnemonicParsing="false" text="   Close App" />
       </menus>
     </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS" />
-      <fx:include fx:id="formConvertDecBin" source="ConvertDeciBina.fxml" />
+    <AnchorPane fx:id="main" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+         <children>
+            <fx:include fx:id="formIMCcalc" source="CalcIMC.fxml" />
+         </children></AnchorPane>
   </children>
 </VBox>
