@@ -34,27 +34,39 @@
 
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="main" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.utilitaire.controller.MainController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
-            <Menu mnemonicParsing="false" text="Biblio" />
-        <Menu mnemonicParsing="false" text="Convert Binaire" />
-            <Menu mnemonicParsing="false" text="Convert Hexa" />
-            <Menu mnemonicParsing="false" text="Convert Romain" />
-            <Menu mnemonicParsing="false" text="IMC" />
-            <Menu mnemonicParsing="false" text="Armée" />
-            <Menu mnemonicParsing="false" text="|" />
-            <Menu mnemonicParsing="false" text="   Close App" />
+            <Menu fx:id="menuLib" mnemonicParsing="false" text="Biblio">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Une app pour archiver et gérer des livres dans une bibliothèque." />
+               </items></Menu>
+        <Menu fx:id="menuBHConverter" mnemonicParsing="false" text="Convert Bin/Hexa">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Une app pour convertir des nombres décimaux en binaire et hexadécimal." />
+               </items></Menu>
+            <Menu fx:id="menuRomain" mnemonicParsing="false" text="Convert Romain" />
+            <Menu fx:id="menuIMCcalc" mnemonicParsing="false" text="IMC">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Une app pour calcul l'indice IMC d'une personne." />
+               </items></Menu>
+            <Menu fx:id="menuArmee" mnemonicParsing="false" text="Armée" />
+            <Menu mnemonicParsing="false" text="                                                          |" />
+            <Menu fx:id="Close" mnemonicParsing="false" text="Close">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Are you sure?" />
+               </items></Menu>
       </menus>
     </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+    <AnchorPane fx:id="mainAnchor" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" visible="false" VBox.vgrow="ALWAYS">
          <children>
-            <HBox layoutY="-7.0" prefHeight="380.0" prefWidth="640.0" />
-         </children></AnchorPane>
+            <fx:include fx:id="formBHConverter" source="Converter.fxml" />
+         </children>
+      </AnchorPane>
   </children>
 </VBox>
