@@ -52,7 +52,11 @@
                </items></Menu>
             <Menu mnemonicParsing="false" text="Armée" />
             <Menu mnemonicParsing="false" text="|" />
-            <Menu mnemonicParsing="false" text="   Close App" />
+            <Menu mnemonicParsing="false" text="   Close App">
+               <items>
+                  <MenuItem fx:id="Yes" mnemonicParsing="false" text="Yes" />
+                  <MenuItem fx:id="No" mnemonicParsing="false" text="No" />
+               </items></Menu>
       </menus>
     </MenuBar>
     <AnchorPane fx:id="main" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
