@@ -35,15 +35,14 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.utilitaire.controller.MainController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
             <Menu mnemonicParsing="false" text="Biblio" />
-        <Menu mnemonicParsing="false" text="Convert Binaire" />
+        <Menu fx:id="menubinary" mnemonicParsing="false" text="Convert Binaire" />
             <Menu mnemonicParsing="false" text="Convert Hexa" />
             <Menu mnemonicParsing="false" text="Convert Romain" />
             <Menu mnemonicParsing="false" text="IMC" />
@@ -52,9 +51,7 @@
             <Menu mnemonicParsing="false" text="   Close App" />
       </menus>
     </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-         <children>
-            <HBox layoutY="-7.0" prefHeight="380.0" prefWidth="640.0" />
-         </children></AnchorPane>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS" />
+      <fx:include fx:id="formConvertDecBin" source="ConvertDeciBina.fxml" />
   </children>
 </VBox>
