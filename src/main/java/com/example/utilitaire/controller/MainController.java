@@ -16,7 +16,7 @@ public class MainController implements Initializable {
     @FXML
     private Menu menuIMCcalc;
     @FXML
-    private MenuItem yes;
+    private MenuItem Yes;
     @FXML
     private AnchorPane main;
     @FXML
@@ -28,7 +28,7 @@ public class MainController implements Initializable {
             main.getChildren().removeAll(formIMCcalc);
             main.getChildren().add(formIMCcalc);
         });
-        yes.setOnAction(exit ->{
+        Yes.setOnMenuValidation(exit ->{
             Platform.exit();
         });
     }
