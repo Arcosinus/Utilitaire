@@ -1,5 +1,6 @@
 package com.example.utilitaire.controller;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Menu;
@@ -28,7 +29,7 @@ public class MainController implements Initializable {
             main.getChildren().add(formIMCcalc);
         });
         yes.setOnMenuValidation(exit ->{
-            Stage.close();
+            Platform.exit();
         });
     }
 }
