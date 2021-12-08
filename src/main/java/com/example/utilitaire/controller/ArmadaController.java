@@ -5,10 +5,8 @@ import com.example.utilitaire.objet.Soldat;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
+import javafx.scene.control.*;
+import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -19,17 +17,25 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class ArmadaController implements Initializable {
+    List<String> dico = new ArrayList<>();
     List<General> armada = new ArrayList<>();
     List<Soldat> green = new ArrayList<>();
     @FXML
     private TreeView treemada;
+    @FXML
+    private MenuItem create;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        dico.add("Jacque Chirac");
+        dico.add("George Pompidou");
+        dico.add("Pétain");
+        dico.add("Emmanuel Macron");
+        dico.add("Sarcozie");
         TreeItem<String> armadatree = new TreeItem<>("Armée");
         General general = new General();
         for (int i = 1; i <= 5; i++) {
             Soldat recrue = new Soldat();
-            recrue.Soldat("Soldat" + i);
+            recrue.Soldat(dico.get(i-1));
             green.add(recrue);
         }
         general.General("Charle de Gaulle",green);
@@ -42,5 +48,10 @@ public class ArmadaController implements Initializable {
         }
         armadatree.getChildren().add(generaltree);
         treemada.setRoot(armadatree);
+        create.setOnAction(create -> {
+            Soldat recrue = new Soldat();
+            recrue.Soldat("Dummy");
+            green.add(recrue);
+        });
     }
 }
