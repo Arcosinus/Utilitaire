@@ -55,29 +55,31 @@ public class ArmadaController implements Initializable {
             recrue.Soldat(dico.get(i-1));
             green.add(recrue);
         }
-        general.General("Charle de Gaulle",green);
+        general.General("Charle-de-Gaulle",green);
         armada.add(general);
         treeRefresh();
         create.setOnAction(create -> {
             General selectedgeneral = new General();
             MultipleSelectionModel msm = treemada.getSelectionModel();
-            System.out.println(msm.getSelectedItem());
-            int i;
-            for (i = 0; i < armada.size(); i++) {
-                if (msm.getSelectedItem() + "" == "TreeItem [ value: " + armada.get(i).Matricule() + " ]"){
-                    selectedgeneral = armada.get(i);
-                    break;
+            int selecte = -1;
+            for (int i = 0; i < armada.size(); i++) {
+                if ((msm.getSelectedItem() + "").equals("TreeItem [ value: " + armada.get(i).Matricule() + " ]")){
+                    selecte=i;
                 }
             }
-            Soldat recrue = new Soldat();
-            recrue.Soldat("Soldat");
-            selectedgeneral.addSoldat(recrue);
-            armada.set(i-1,selectedgeneral);
-            treeRefresh();
+            if (selecte != -1) {
+                selectedgeneral.General(armada.get(selecte).Matricule(), armada.get(selecte).getTroupe());
+                Soldat recrue = new Soldat();
+                recrue.Soldat("Soldat" + (selectedgeneral.numTroupe() + 1));
+                selectedgeneral.addSoldat(recrue);
+                armada.set(selecte, selectedgeneral);
+                treeRefresh();
+            }
         });
         createg.setOnAction(createg -> {
             General recrue = new General();
-            recrue.General("Général",null);
+            List<Soldat> troupe = new ArrayList<>();
+            recrue.General("Général"+(armada.size()+1),troupe);
             armada.add(recrue);
             treeRefresh();
         });
