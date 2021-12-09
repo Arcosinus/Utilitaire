@@ -4,10 +4,12 @@ import com.example.utilitaire.objet.Book;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import java.net.URL;
@@ -56,23 +58,28 @@ public class LibraryController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ArrayList<Book> bookArrayList = new ArrayList<Book>();
-        ancLibrary.getChildren().removeAll(bookInputForm);
-
-        btnAdd.setOnMouseClicked(launchForm -> {
-            lblError.setText("");
-
-            if(!ancLibrary.getChildren().contains(bookInputForm)) {
-                ancLibrary.getChildren().removeAll(bookInputForm);
-                ancLibrary.getChildren().add(bookInputForm);
-            }
-        });
-
         tabTitle.setCellValueFactory(new PropertyValueFactory<Book, String>("title"));
         tabAuthor.setCellValueFactory(new PropertyValueFactory<Book, String>("autor"));
         tabColumn.setCellValueFactory(new PropertyValueFactory<Book, Integer>("column"));
         tabRow.setCellValueFactory(new PropertyValueFactory<Book, Integer>("row"));
         tabPublication.setCellValueFactory(new PropertyValueFactory<Book, String>("publication"));
         tabPlotSummary.setCellValueFactory(new PropertyValueFactory<Book, String>("plotSummary"));
+
+        ancLibrary.getChildren().removeAll(bookInputForm);
+        btnAdd.setOnMouseClicked(launchForm -> {
+            lblError.setText("");
+            txtTitle.clear();
+            txtAuthor.clear();
+            txtColumn.clear();
+            txtRow.clear();
+            txtPublication.clear();
+            txtAPSummary.clear();
+
+            if(!ancLibrary.getChildren().contains(bookInputForm)) {
+                ancLibrary.getChildren().removeAll(bookInputForm);
+                ancLibrary.getChildren().add(bookInputForm);
+            }
+        });
 
         btnSendBook.setOnMouseClicked(sendBook -> {
             Book newBook = null;
@@ -100,5 +107,24 @@ public class LibraryController implements Initializable {
                 lblError.setText("Please enter numerical value for column and row");
             }
         });
+
+        tblViewBooks.setOnMouseClicked(clickedRow -> {
+            if(clickedRow.getClickCount() >= 1) {
+                if (tblViewBooks.getSelectionModel().getSelectedItem() != null) {
+                    if(!ancLibrary.getChildren().contains(bookInputForm)) {
+                        ancLibrary.getChildren().removeAll(bookInputForm);
+                        ancLibrary.getChildren().add(bookInputForm);
+                    }
+                    Book clickedBook = tblViewBooks.getSelectionModel().getSelectedItem();
+                    txtTitle.setText(clickedBook.getTitle());
+                    txtAuthor.setText(clickedBook.getAutor());
+                    txtColumn.setText(String.valueOf(clickedBook.getColumn()));
+                    txtRow.setText(String.valueOf(clickedBook.getRow()));
+                    txtPublication.setText(clickedBook.getPublication());
+                    txtAPSummary.setText(clickedBook.getPlotSummary());
+                }
+            }
+        });
     }
+
 }
