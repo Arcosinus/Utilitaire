@@ -16,9 +16,17 @@ public class MainController implements Initializable {
     @FXML
     private Menu menuIMCcalc;
     @FXML
+    private Menu menuBiblio;
+    @FXML
+    private Menu menuRomain;
+    @FXML
     private MenuItem Yes;
     @FXML
     private AnchorPane main;
+    @FXML
+    private HBox formRomain;
+    @FXML
+    private HBox formLibrary;
     @FXML
     private HBox formIMCcalc;
     @Override
@@ -26,6 +34,14 @@ public class MainController implements Initializable {
         main.getChildren().removeAll(formIMCcalc);
         menuIMCcalc.setOnMenuValidation(launchbinary ->{
             main.getChildren().removeAll(formIMCcalc);
+            main.getChildren().add(formIMCcalc);
+        });
+        menuRomain.setOnMenuValidation(launchromain ->{
+            main.getChildren().removeAll(formIMCcalc,formRomain);
+            main.getChildren().add(formIMCcalc);
+        });
+        menuBiblio.setOnMenuValidation(launchbiblio ->{
+            main.getChildren().removeAll(formIMCcalc,formLibrary);
             main.getChildren().add(formIMCcalc);
         });
         Yes.setOnAction(exit ->{
