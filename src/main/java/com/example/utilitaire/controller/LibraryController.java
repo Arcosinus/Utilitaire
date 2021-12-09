@@ -1,15 +1,10 @@
 package com.example.utilitaire.controller;
 
 import com.example.utilitaire.objet.Book;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
-import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import java.net.URL;
@@ -53,7 +48,6 @@ public class LibraryController implements Initializable {
     private HBox bookInputForm;
     @FXML
     private AnchorPane ancLibrary;
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -126,5 +120,4 @@ public class LibraryController implements Initializable {
             }
         });
     }
-
 }
