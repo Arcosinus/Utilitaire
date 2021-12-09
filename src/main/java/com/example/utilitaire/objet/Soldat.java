@@ -4,10 +4,15 @@ import java.util.List;
 
 public class Soldat {
     String name;
-    public void Soldat(String n){
+    int hp;
+    public void Soldat(String n, int s){
         name=n;
+        hp=s;
     }
     public String Matricule(){
         return name;
+    }
+    public int statut(){
+        return hp;
     }
 }

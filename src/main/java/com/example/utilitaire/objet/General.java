@@ -16,6 +16,9 @@ public class General {
     public String troupeAssign(int index){
         return troupe.get(index).Matricule();
     }
+    public int troupeAssignStatut(int index){
+        return troupe.get(index).statut();
+    }
     public List<Soldat> getTroupe(){
         return troupe;
     }
