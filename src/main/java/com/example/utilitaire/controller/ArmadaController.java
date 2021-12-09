@@ -20,10 +20,28 @@ public class ArmadaController implements Initializable {
     List<String> dico = new ArrayList<>();
     List<General> armada = new ArrayList<>();
     List<Soldat> green = new ArrayList<>();
+    TreeItem<String> armadatree = new TreeItem<>("Armée");
     @FXML
     private TreeView treemada;
     @FXML
+    private MenuItem createg;
+    @FXML
     private MenuItem create;
+    public void treeRefresh(){
+        treemada.setRoot(null);
+        TreeItem<String> armadatree = new TreeItem<>("Armée");
+        for (int j = 0; j < armada.size(); j++) {
+            TreeItem<String> generaltree = new TreeItem<>(armada.get(j).Matricule());
+            if (armada.get(j).haveTroupe()) {
+                for (int i = 0; i < armada.get(j).numTroupe(); i++) {
+                    TreeItem<String> soldattree = new TreeItem<>(armada.get(j).troupeAssign(i));
+                    generaltree.getChildren().add(soldattree);
+                }
+            }
+            armadatree.getChildren().add(generaltree);
+        }
+        treemada.setRoot(armadatree);
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         dico.add("Jacque Chirac");
@@ -31,7 +49,6 @@ public class ArmadaController implements Initializable {
         dico.add("Pétain");
         dico.add("Emmanuel Macron");
         dico.add("Sarcozie");
-        TreeItem<String> armadatree = new TreeItem<>("Armée");
         General general = new General();
         for (int i = 1; i <= 5; i++) {
             Soldat recrue = new Soldat();
@@ -40,18 +57,29 @@ public class ArmadaController implements Initializable {
         }
         general.General("Charle de Gaulle",green);
         armada.add(general);
-        TreeItem<String> generaltree = new TreeItem<>(armada.get(0).Matricule());
-        System.out.println(armada.get(0).troupeAssign(0));
-        for (int i = 0; i < armada.get(0).numTroupe(); i++) {
-            TreeItem<String> soldattree = new TreeItem<>(armada.get(0).troupeAssign(i));
-            generaltree.getChildren().add(soldattree);
-        }
-        armadatree.getChildren().add(generaltree);
-        treemada.setRoot(armadatree);
+        treeRefresh();
         create.setOnAction(create -> {
+            General selectedgeneral = new General();
+            MultipleSelectionModel msm = treemada.getSelectionModel();
+            System.out.println(msm.getSelectedItem());
+            int i;
+            for (i = 0; i < armada.size(); i++) {
+                if (msm.getSelectedItem() + "" == "TreeItem [ value: " + armada.get(i).Matricule() + " ]"){
+                    selectedgeneral = armada.get(i);
+                    break;
+                }
+            }
             Soldat recrue = new Soldat();
-            recrue.Soldat("Dummy");
-            green.add(recrue);
+            recrue.Soldat("Soldat");
+            selectedgeneral.addSoldat(recrue);
+            armada.set(i-1,selectedgeneral);
+            treeRefresh();
+        });
+        createg.setOnAction(createg -> {
+            General recrue = new General();
+            recrue.General("Général",null);
+            armada.add(recrue);
+            treeRefresh();
         });
     }
 }

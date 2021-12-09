@@ -16,7 +16,19 @@ public class General {
     public String troupeAssign(int index){
         return troupe.get(index).Matricule();
     }
+    public List<Soldat> getTroupe(){
+        return troupe;
+    }
+    public void addSoldat(Soldat green){
+        troupe.add(green);
+    }
     public int numTroupe(){
         return troupe.size();
+    }
+    public boolean haveTroupe(){
+        if (troupe == null){
+            return false;
+        }
+        return true;
     }
 }
