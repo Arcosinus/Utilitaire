@@ -13,4 +13,9 @@
       <module name="Utilitaire" target="17" />
     </bytecodeTargetLevel>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Utilitaire" options="--add-exports jdk.javadoc/jdk.javadoc.internal.doclets.formats.html.markup=com.example.utilitaire" />
+    </option>
+  </component>
 </project>

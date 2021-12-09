@@ -1,5 +1,6 @@
 package com.example.utilitaire.controller;
 
+import com.example.utilitaire.objet.Book;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -40,8 +41,6 @@ public class MainController implements Initializable {
             main.getChildren().removeAll(formLib,formIMCcalc);
             main.getChildren().add(formLib);
         });
-
-
 
         Yes.setOnAction(exit ->{
             Platform.exit();
