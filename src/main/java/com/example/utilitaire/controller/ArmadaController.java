@@ -83,6 +83,8 @@ public class ArmadaController implements Initializable {
             treeRefresh();
         });
         treemada.setOnMouseClicked(selection ->{
+            nameSelect.clear();
+            hpSelect.clear();
             MultipleSelectionModel msm = treemada.getSelectionModel();
             int selecte = -1;
             int selectesol = -1;
@@ -141,6 +143,8 @@ public class ArmadaController implements Initializable {
                     armada.get(selecte).setHealth(parseInt(hpSelect.getText()), selectesol);
                 }
                 treeRefresh();
+                nameSelect.clear();
+                hpSelect.clear();
             }
         });
         hpSelect.setOnKeyPressed(changeHp ->{
@@ -162,6 +166,8 @@ public class ArmadaController implements Initializable {
                     armada.get(selecte).setHealth(parseInt(hpSelect.getText()), selectesol);
                 }
                 treeRefresh();
+                nameSelect.clear();
+                hpSelect.clear();
             }
         });
     }
