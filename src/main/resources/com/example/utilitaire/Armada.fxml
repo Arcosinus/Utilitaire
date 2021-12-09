@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox fx:id="stage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.utilitaire.controller.ArmadaController">
+   <children>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="25.0" prefWidth="100.0" text="Nom" />
+                  <Label alignment="CENTER" prefHeight="25.0" prefWidth="100.0" text="Point de vie" />
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <TextField fx:id="nameSelect" />
+                  <TextField fx:id="hpSelect" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <TreeView fx:id="treemada" prefHeight="380.0" prefWidth="440.0">
+         <contextMenu>
+            <ContextMenu>
+              <items>
+                <MenuItem fx:id="create" mnemonicParsing="false" text="Créer soldat" />
+                <MenuItem fx:id="createg" mnemonicParsing="false" text="Créer general" />
+                <MenuItem fx:id="suppr" mnemonicParsing="false" text="Supprimer" />
+              </items>
+            </ContextMenu>
+         </contextMenu></TreeView>
+   </children>
+</HBox>
