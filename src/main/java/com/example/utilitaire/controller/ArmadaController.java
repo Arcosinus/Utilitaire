@@ -43,6 +43,7 @@ public class ArmadaController implements Initializable {
         treemada.setRoot(null);
         TreeItem<String> armadatree = new TreeItem<>("Armée");
         for (int j = 0; j < armada.size(); j++) {
+            armada.get(j).Rang();
             TreeItem<String> generaltree = new TreeItem<>(armada.get(j).Matricule());
             if (armada.get(j).haveTroupe()) {
                 for (int i = 0; i < armada.get(j).numTroupe(); i++) {
@@ -169,6 +170,35 @@ public class ArmadaController implements Initializable {
                 nameSelect.clear();
                 hpSelect.clear();
             }
+        });
+        suppr.setOnAction(suppression ->{
+            MultipleSelectionModel msm = treemada.getSelectionModel();
+            int selecte = -1;
+            int selectesol = -1;
+            for (int i = 0; i < armada.size(); i++) {
+                if ((msm.getSelectedItem() + "").equals("TreeItem [ value: " + armada.get(i).Matricule() + " ]")) {
+                    selecte = i;
+                    i = armada.size();
+                }
+            }
+            if (selecte == -1) {
+                for (int i = 0; i < armada.size(); i++) {
+                    for (int j = 0; j < (armada.get(i).numTroupe()); j++) {
+                        if ((msm.getSelectedItem() + "").equals("TreeItem [ value: " + armada.get(i).troupeAssign(j) + " ]")) {
+                            selecte = i;
+                            selectesol = j;
+                            break;
+                        }
+                    }
+                }
+            }
+            if (selectesol == -1 && selecte != -1) {
+                armada.remove(selecte);
+            }
+            if (selectesol != -1 && selecte != -1) {
+                armada.get(selecte).fired(selectesol);
+            }
+            treeRefresh();
         });
     }
 }
