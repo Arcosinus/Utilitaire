@@ -29,6 +29,8 @@ public class ArmadaController implements Initializable {
     @FXML
     private TreeView treemada;
     @FXML
+    private MenuItem suppr;
+    @FXML
     private MenuItem createg;
     @FXML
     private MenuItem create;
@@ -69,10 +71,10 @@ public class ArmadaController implements Initializable {
             }
         });
         createg.setOnAction(createg -> {
-            General recrue = new General();
+            General recrueg = new General();
             List<Soldat> troupe = new ArrayList<>();
-            recrue.General("Général"+(armada.size()+1),troupe);
-            armada.add(recrue);
+            recrueg.General("Général"+(armada.size()+1),troupe);
+            armada.add(recrueg);
             treeRefresh();
         });
         treemada.setOnMouseClicked(selection ->{
@@ -87,14 +89,11 @@ public class ArmadaController implements Initializable {
             }
             if (selecte == -1){
                 for (int i = 0; i < armada.size(); i++) {
-                    System.out.println(i + "i");
                     for (int j = 0; j < (armada.get(i).numTroupe()); j++) {
-                        System.out.println(j + "j");
                         if ((msm.getSelectedItem() + "").equals("TreeItem [ value: " + armada.get(i).troupeAssign(j) + " ]")){
                             selecte=i;
                             selectesol=j;
-                            j=armada.get(i).numTroupe();
-                            i=armada.size();
+                            break;
                         }
                     }
                 }

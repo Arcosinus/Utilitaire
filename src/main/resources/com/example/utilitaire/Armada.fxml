@@ -31,7 +31,8 @@
             <ContextMenu>
               <items>
                 <MenuItem fx:id="create" mnemonicParsing="false" text="Créer soldat" />
-                  <MenuItem fx:id="createg" mnemonicParsing="false" text="Créer general" />
+                <MenuItem fx:id="createg" mnemonicParsing="false" text="Créer general" />
+                <MenuItem fx:id="suppr" mnemonicParsing="false" text="Supprimer" />
               </items>
             </ContextMenu>
          </contextMenu></TreeView>
