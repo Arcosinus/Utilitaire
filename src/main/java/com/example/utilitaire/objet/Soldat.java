@@ -9,6 +9,12 @@ public class Soldat {
         name=n;
         hp=s;
     }
+    public void rename(String newname){
+        name=newname;
+    }
+    public void medicalcheck(int health){
+        hp=health;
+    }
     public String Matricule(){
         return name;
     }

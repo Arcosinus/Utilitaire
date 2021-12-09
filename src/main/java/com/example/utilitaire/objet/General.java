@@ -10,6 +10,15 @@ public class General {
         name=n;
         troupe=assign;
     }
+    public void rename(String newname){
+        name=newname;
+    }
+    public void renameSoldier(String newname, int index){
+        troupe.get(index).rename(newname);
+    }
+    public void setHealth(int health, int index){
+        troupe.get(index).medicalcheck(health);
+    }
     public String Matricule(){
         return name;
     }
