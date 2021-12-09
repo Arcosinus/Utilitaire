@@ -58,7 +58,7 @@
                   <MenuItem mnemonicParsing="false" text="Créer et gérer votre propre armée" />
                </items></Menu>
             <Menu mnemonicParsing="false" text="|" />
-            <Menu mnemonicParsing="false" text="   Close App">
+            <Menu mnemonicParsing="false" text="Close App">
                <items>
                   <MenuItem fx:id="Yes" mnemonicParsing="false" text="Yes" />
                   <MenuItem fx:id="No" mnemonicParsing="false" text="No" />
@@ -70,6 +70,7 @@
             <fx:include fx:id="formRomain" source="ConvertionRomain.fxml" />
             <fx:include fx:id="formIMCcalc" source="CalcIMC.fxml" />
             <fx:include fx:id="formLibrary" source="library.fxml" />
+             <fx:include fx:id="formArmada" source="Armada.fxml" />
          </children></AnchorPane>
   </children>
 </VBox>
