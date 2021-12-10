@@ -8,77 +8,52 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
-
     @FXML
     private Menu menuIMCcalc;
     @FXML
-    private HBox formIMCcalc;
-
-    @FXML
-    private Menu menuBHConverter;
-    @FXML
-    private HBox formBHConverter;
-
-    @FXML
-    private Menu menuLib;
-    @FXML
-    private VBox formLib;
-
-    @FXML
-    private Menu menuArmee;
-    @FXML
-    private HBox formArmee;
-
+    private Menu menuBiblio;
     @FXML
     private Menu menuRomain;
     @FXML
+    private Menu menuArmada;
+    @FXML
+    private MenuItem Yes;
+    @FXML
+    private AnchorPane main;
+    @FXML
+    private HBox formArmada;
+    @FXML
     private HBox formRomain;
-
-
     @FXML
-    private MenuItem Close;
+    private VBox formLibrary;
     @FXML
-    private VBox main;
-    @FXML
-    private AnchorPane mainAnchor;
-
-//ConversionRomain RomainControlleur formRomain,
-
+    private HBox formIMCcalc;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        mainAnchor.getChildren().removeAll(formBHConverter, formIMCcalc, formLib, formRomain/**, formArmee, **/);
-
-        menuIMCcalc.setOnMenuValidation(launchbinary ->{
-            mainAnchor.getChildren().removeAll(formIMCcalc,formLib,formBHConverter,formRomain/**,formArmee**/);
-            mainAnchor.getChildren().add(formIMCcalc);
+        main.getChildren().removeAll(formArmada,formIMCcalc,formRomain,formLibrary);
+        menuArmada.setOnMenuValidation(launcharmada ->{
+            main.getChildren().removeAll(formArmada,formIMCcalc,formRomain,formLibrary);
+            main.getChildren().add(formArmada);
         });
-
-        menuLib.setOnMenuValidation(launchLibrary -> {
-            mainAnchor.getChildren().removeAll(formIMCcalc,formLib,formBHConverter,formRomain/**formArmee**/);
-            mainAnchor.getChildren().add(formLib);
+        menuIMCcalc.setOnMenuValidation(launchIMC ->{
+            main.getChildren().removeAll(formArmada,formIMCcalc,formRomain,formLibrary);
+            main.getChildren().add(formIMCcalc);
         });
-
-        menuBHConverter.setOnMenuValidation(launchBHconverter ->{
-            mainAnchor.getChildren().removeAll(formIMCcalc,formLib,formBHConverter,formRomain/**formArmee**/);
-            mainAnchor.getChildren().add(formBHConverter);
+        menuRomain.setOnMenuValidation(launchromain ->{
+            main.getChildren().removeAll(formArmada,formIMCcalc,formRomain,formLibrary);
+            main.getChildren().add(formRomain);
         });
-
-        //menuArmee.setOnMenuValidation(launchArmee ->{
-        //    main.getChildren().removeAll(formIMCcalc,formLib,formBHConverter/**,formRomain,formArmee**/)
-        //    main.getChildren().add(formArmee);
-        //});
-
-        menuRomain.setOnMenuValidation(launchRomain ->{
-            mainAnchor.getChildren().removeAll(formIMCcalc,formLib,formBHConverter,formRomain/**formArmee**/);
-            mainAnchor.getChildren().add(formRomain);
+        menuBiblio.setOnMenuValidation(launchbiblio ->{
+            main.getChildren().removeAll(formArmada,formIMCcalc,formRomain,formLibrary);
+            main.getChildren().add(formLibrary);
         });
-
-        Close.setOnAction(event -> {
+        Yes.setOnAction(exit ->{
             Platform.exit();
         });
     }
