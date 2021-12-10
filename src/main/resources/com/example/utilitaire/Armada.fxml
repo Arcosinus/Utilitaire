@@ -22,6 +22,7 @@
                <children>
                   <TextField fx:id="nameSelect" />
                   <TextField fx:id="hpSelect" />
+                  <Label fx:id="erreur" alignment="CENTER" prefHeight="17.0" prefWidth="320.0" text="" />
                </children>
             </VBox>
          </children>

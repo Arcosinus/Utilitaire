@@ -23,10 +23,8 @@ import static java.lang.Integer.parseInt;
 
 public class ArmadaController implements Initializable {
     List<General> armada = new ArrayList<>();
-    List<Soldat> green = new ArrayList<>();
-    TreeItem<String> armadatree = new TreeItem<>("Armée");
     @FXML
-    private HBox stage;
+    private Label erreur;
     @FXML
     private TextField nameSelect;
     @FXML
@@ -40,14 +38,15 @@ public class ArmadaController implements Initializable {
     @FXML
     private MenuItem create;
     public void treeRefresh(){
+        //Affiche les nouveaux Generaux et Soldats ayant été ajouté ou modifié, sert aussi à initialisé la racine de l'arbre
         treemada.setRoot(null);
         TreeItem<String> armadatree = new TreeItem<>("Armée");
         for (int j = 0; j < armada.size(); j++) {
             armada.get(j).Rang();
-            TreeItem<String> generaltree = new TreeItem<>(armada.get(j).Matricule());
+            TreeItem<String> generaltree = new TreeItem<>("Â-"+armada.get(j).Matricule());
             if (armada.get(j).haveTroupe()) {
                 for (int i = 0; i < armada.get(j).numTroupe(); i++) {
-                    TreeItem<String> soldattree = new TreeItem<>(armada.get(j).troupeAssign(i));
+                    TreeItem<String> soldattree = new TreeItem<>("^-"+armada.get(j).troupeAssign(i));
                     generaltree.getChildren().add(soldattree);
                 }
             }
@@ -59,11 +58,12 @@ public class ArmadaController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         treeRefresh();
         create.setOnAction(create -> {
+            //Ajoute un Soldat dans la liste des Soldats du General selectionné, ne fonctionne pas si l'armée ou un soldat est selectionné
             General selectedgeneral = new General();
             MultipleSelectionModel msm = treemada.getSelectionModel();
             int selecte = -1;
             for (int i = 0; i < armada.size(); i++) {
-                if ((msm.getSelectedItem() + "").equals("TreeItem [ value: " + armada.get(i).Matricule() + " ]")){
+                if ((msm.getSelectedItem() + "").equals("TreeItem [ value: Â-" + armada.get(i).Matricule() + " ]")){
                     selecte=i;
                 }
             }
@@ -77,6 +77,7 @@ public class ArmadaController implements Initializable {
             }
         });
         createg.setOnAction(createg -> {
+            //Ajoute un General dans la liste des Generaux
             General recrueg = new General();
             List<Soldat> troupe = new ArrayList<>();
             recrueg.General("Général"+(armada.size()+1),troupe);
@@ -84,13 +85,14 @@ public class ArmadaController implements Initializable {
             treeRefresh();
         });
         treemada.setOnMouseClicked(selection ->{
+            //Affiche le nom du General selectionné ou le nom et l'état de santé du Soldat selectionné
             nameSelect.clear();
             hpSelect.clear();
             MultipleSelectionModel msm = treemada.getSelectionModel();
             int selecte = -1;
             int selectesol = -1;
             for (int i = 0; i < armada.size(); i++) {
-                if ((msm.getSelectedItem() + "").equals("TreeItem [ value: " + armada.get(i).Matricule() + " ]")){
+                if ((msm.getSelectedItem() + "").equals("TreeItem [ value: Â-" + armada.get(i).Matricule() + " ]")){
                     selecte=i;
                     i=armada.size();
                 }
@@ -98,7 +100,7 @@ public class ArmadaController implements Initializable {
             if (selecte == -1){
                 for (int i = 0; i < armada.size(); i++) {
                     for (int j = 0; j < (armada.get(i).numTroupe()); j++) {
-                        if ((msm.getSelectedItem() + "").equals("TreeItem [ value: " + armada.get(i).troupeAssign(j) + " ]")){
+                        if ((msm.getSelectedItem() + "").equals("TreeItem [ value: ^-" + armada.get(i).troupeAssign(j) + " ]")){
                             selecte=i;
                             selectesol=j;
                             break;
@@ -115,12 +117,13 @@ public class ArmadaController implements Initializable {
             }
         });
         nameSelect.setOnKeyPressed(changeName ->{
+            //Donne au General selectionné le nom donné dans le textfield ou donne au Soldat selectionné le nom ainsi que l'état de santé donné dans les textfiels en appuyant sur Entrée
             if (changeName.getCode() == KeyCode.ENTER) {
                 MultipleSelectionModel msm = treemada.getSelectionModel();
                 int selecte = -1;
                 int selectesol = -1;
                 for (int i = 0; i < armada.size(); i++) {
-                    if ((msm.getSelectedItem() + "").equals("TreeItem [ value: " + armada.get(i).Matricule() + " ]")) {
+                    if ((msm.getSelectedItem() + "").equals("TreeItem [ value: Â-" + armada.get(i).Matricule() + " ]")) {
                         selecte = i;
                         i = armada.size();
                     }
@@ -128,7 +131,7 @@ public class ArmadaController implements Initializable {
                 if (selecte == -1) {
                     for (int i = 0; i < armada.size(); i++) {
                         for (int j = 0; j < (armada.get(i).numTroupe()); j++) {
-                            if ((msm.getSelectedItem() + "").equals("TreeItem [ value: " + armada.get(i).troupeAssign(j) + " ]")) {
+                            if ((msm.getSelectedItem() + "").equals("TreeItem [ value: ^-" + armada.get(i).troupeAssign(j) + " ]")) {
                                 selecte = i;
                                 selectesol = j;
                                 break;
@@ -139,9 +142,18 @@ public class ArmadaController implements Initializable {
                 if (selectesol == -1 && selecte != -1) {
                     armada.get(selecte).rename(nameSelect.getText());
                 }
+                boolean valeurcorrect = false;
                 if (selectesol != -1 && selecte != -1) {
-                    armada.get(selecte).renameSoldier(nameSelect.getText(), selectesol);
-                    armada.get(selecte).setHealth(parseInt(hpSelect.getText()), selectesol);
+                    try {
+                        parseInt(hpSelect.getText());
+                        valeurcorrect = true;
+                    } catch (Exception e) {
+                        valeurcorrect = false;
+                    }
+                    if (valeurcorrect){
+                        armada.get(selecte).renameSoldier(nameSelect.getText(), selectesol);
+                        armada.get(selecte).setHealth(parseInt(hpSelect.getText()), selectesol);
+                    }
                 }
                 treeRefresh();
                 nameSelect.clear();
@@ -149,20 +161,28 @@ public class ArmadaController implements Initializable {
             }
         });
         hpSelect.setOnKeyPressed(changeHp ->{
+            //Donne au Soldat selectionné le nom ainsi que l'état de santé donné dans les textfiels en appuyant sur Entrée
             if (changeHp.getCode() == KeyCode.ENTER) {
                 MultipleSelectionModel msm = treemada.getSelectionModel();
                 int selecte = -1;
                 int selectesol = -1;
                 for (int i = 0; i < armada.size(); i++) {
                     for (int j = 0; j < (armada.get(i).numTroupe()); j++) {
-                        if ((msm.getSelectedItem() + "").equals("TreeItem [ value: " + armada.get(i).troupeAssign(j) + " ]")) {
+                        if ((msm.getSelectedItem() + "").equals("TreeItem [ value: ^-" + armada.get(i).troupeAssign(j) + " ]")) {
                             selecte = i;
                             selectesol = j;
                             break;
                         }
                     }
                 }
-                if (selectesol != -1 && selecte != -1) {
+                boolean valeurcorrect;
+                try{
+                    parseInt(hpSelect.getText());
+                    valeurcorrect = true;
+                } catch (Exception e) {
+                    valeurcorrect = false;
+                }
+                if (selectesol != -1 && selecte != -1 && valeurcorrect) {
                     armada.get(selecte).renameSoldier(nameSelect.getText(), selectesol);
                     armada.get(selecte).setHealth(parseInt(hpSelect.getText()), selectesol);
                 }
@@ -172,11 +192,12 @@ public class ArmadaController implements Initializable {
             }
         });
         suppr.setOnAction(suppression ->{
+            //Supprime le Soldat selectionné ou le General selectionné et l'ensemble de ses soldats
             MultipleSelectionModel msm = treemada.getSelectionModel();
             int selecte = -1;
             int selectesol = -1;
             for (int i = 0; i < armada.size(); i++) {
-                if ((msm.getSelectedItem() + "").equals("TreeItem [ value: " + armada.get(i).Matricule() + " ]")) {
+                if ((msm.getSelectedItem() + "").equals("TreeItem [ value: Â-" + armada.get(i).Matricule() + " ]")) {
                     selecte = i;
                     i = armada.size();
                 }
@@ -184,7 +205,7 @@ public class ArmadaController implements Initializable {
             if (selecte == -1) {
                 for (int i = 0; i < armada.size(); i++) {
                     for (int j = 0; j < (armada.get(i).numTroupe()); j++) {
-                        if ((msm.getSelectedItem() + "").equals("TreeItem [ value: " + armada.get(i).troupeAssign(j) + " ]")) {
+                        if ((msm.getSelectedItem() + "").equals("TreeItem [ value: ^-" + armada.get(i).troupeAssign(j) + " ]")) {
                             selecte = i;
                             selectesol = j;
                             break;
