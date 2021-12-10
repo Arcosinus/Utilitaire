@@ -9,11 +9,15 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class LibraryController implements Initializable {
     @FXML
     private Button btnAdd;
+    @FXML
+    private Button btnDelete;
     @FXML
     private TableColumn tabTitle;
     @FXML
@@ -78,11 +82,38 @@ public class LibraryController implements Initializable {
         btnSendBook.setOnMouseClicked(sendBook -> {
             Book newBook = null;
 
+            if (Integer.parseInt(txtColumn.getText()) > 5 || Integer.parseInt(txtColumn.getText()) < 1) {
+                txtTitle.clear();
+                txtAuthor.clear();
+                txtColumn.clear();
+                txtRow.clear();
+                txtPublication.clear();
+                txtAPSummary.clear();
+                ancLibrary.getChildren().removeAll(bookInputForm);
+                lblError.setText("Please enter numerical value for column (1 to 5)");
+            }
+            if (Integer.parseInt(txtRow.getText()) > 7 || Integer.parseInt(txtRow.getText()) < 1) {
+                txtTitle.clear();
+                txtAuthor.clear();
+                txtColumn.clear();
+                txtRow.clear();
+                txtPublication.clear();
+                txtAPSummary.clear();
+                ancLibrary.getChildren().removeAll(bookInputForm);
+                lblError.setText("Please enter numerical value for row (1 to 7)");
+            }
+
+            Date myDate = new Date();
+            String dateString = myDate.toString();
+            String[] dateStringSplit = dateString.split(" ");
+            Boolean tryCa = false;
             try {
-                newBook = new Book(txtTitle.getText(), txtAuthor.getText(), Integer.parseInt(txtColumn.getText()), Integer.parseInt(txtRow.getText()), txtPublication.getText(), txtAPSummary.getText());
-                bookArrayList.add(newBook);
-                System.out.println(bookArrayList);
-                tblViewBooks.getItems().add(newBook);
+                Integer.parseInt(txtPublication.getText());
+                tryCa = true;
+            } catch(Exception e) {
+                System.out.println("Invalid date");
+                lblError.setText("Please enter a valid date");
+                tryCa = false;
                 txtTitle.clear();
                 txtAuthor.clear();
                 txtColumn.clear();
@@ -90,7 +121,10 @@ public class LibraryController implements Initializable {
                 txtPublication.clear();
                 txtAPSummary.clear();
                 ancLibrary.getChildren().removeAll(bookInputForm);
-            } catch (Exception e) {
+            }
+
+            if (Integer.parseInt(txtPublication.getText()) > Integer.parseInt(dateStringSplit[5]) && tryCa) {
+                System.out.println("Code sees date");
                 txtTitle.clear();
                 txtAuthor.clear();
                 txtColumn.clear();
@@ -98,7 +132,52 @@ public class LibraryController implements Initializable {
                 txtPublication.clear();
                 txtAPSummary.clear();
                 ancLibrary.getChildren().removeAll(bookInputForm);
-                lblError.setText("Please enter numerical value for column and row");
+                lblError.setText("Please enter a valid date");
+
+            } else {
+                if (tblViewBooks.getSelectionModel().getSelectedItem() == null) {
+                    try {
+                        newBook = new Book(txtTitle.getText(), txtAuthor.getText(), Integer.parseInt(txtColumn.getText()), Integer.parseInt(txtRow.getText()), txtPublication.getText(), txtAPSummary.getText());
+                        bookArrayList.add(newBook);
+                        tblViewBooks.getItems().add(newBook);
+                        txtTitle.clear();
+                        txtAuthor.clear();
+                        txtColumn.clear();
+                        txtRow.clear();
+                        txtPublication.clear();
+                        txtAPSummary.clear();
+                        ancLibrary.getChildren().removeAll(bookInputForm);
+                    } catch (Exception e) {
+                        txtTitle.clear();
+                        txtAuthor.clear();
+                        txtColumn.clear();
+                        txtRow.clear();
+                        txtPublication.clear();
+                        txtAPSummary.clear();
+                        ancLibrary.getChildren().removeAll(bookInputForm);
+                        lblError.setText("Please enter numerical value for column and row");
+                    }
+                }
+
+                if(tblViewBooks.getSelectionModel().getSelectedItem() != null) {
+                    Book clickedBook = tblViewBooks.getSelectionModel().getSelectedItem();
+                    System.out.println(clickedBook);
+                    clickedBook.setTitle(txtTitle.getText());
+                    clickedBook.setAutor(txtAuthor.getText());
+                    clickedBook.setColumn(Integer.parseInt(txtColumn.getText()));
+                    clickedBook.setRow(Integer.parseInt(txtRow.getText()));
+                    clickedBook.setPublication(txtPublication.getText());
+                    clickedBook.setPlotSummary(txtAPSummary.getText());
+                    tblViewBooks.getItems().removeAll(bookArrayList);
+                    tblViewBooks.getItems().addAll(bookArrayList);
+                    txtTitle.clear();
+                    txtAuthor.clear();
+                    txtColumn.clear();
+                    txtRow.clear();
+                    txtPublication.clear();
+                    txtAPSummary.clear();
+                    ancLibrary.getChildren().removeAll(bookInputForm);
+                }
             }
         });
 
@@ -109,6 +188,7 @@ public class LibraryController implements Initializable {
                         ancLibrary.getChildren().removeAll(bookInputForm);
                         ancLibrary.getChildren().add(bookInputForm);
                     }
+
                     Book clickedBook = tblViewBooks.getSelectionModel().getSelectedItem();
                     txtTitle.setText(clickedBook.getTitle());
                     txtAuthor.setText(clickedBook.getAutor());
@@ -117,7 +197,21 @@ public class LibraryController implements Initializable {
                     txtPublication.setText(clickedBook.getPublication());
                     txtAPSummary.setText(clickedBook.getPlotSummary());
                 }
+
             }
+        });
+
+        btnDelete.setOnMouseClicked(deleteBook -> {
+            Book clickedBook = tblViewBooks.getSelectionModel().getSelectedItem();
+            bookArrayList.remove(clickedBook);
+            tblViewBooks.getItems().remove(clickedBook);
+            txtTitle.clear();
+            txtAuthor.clear();
+            txtColumn.clear();
+            txtRow.clear();
+            txtPublication.clear();
+            txtAPSummary.clear();
+            ancLibrary.getChildren().removeAll(bookInputForm);
         });
     }
 }
