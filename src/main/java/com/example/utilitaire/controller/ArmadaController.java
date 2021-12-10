@@ -75,6 +75,7 @@ public class ArmadaController implements Initializable {
                 armada.set(selecte, selectedgeneral);
                 treeRefresh();
             }
+            erreur.setText("");
         });
         createg.setOnAction(createg -> {
             //Ajoute un General dans la liste des Generaux
@@ -83,6 +84,7 @@ public class ArmadaController implements Initializable {
             recrueg.General("Général"+(armada.size()+1),troupe);
             armada.add(recrueg);
             treeRefresh();
+            erreur.setText("");
         });
         treemada.setOnMouseClicked(selection ->{
             //Affiche le nom du General selectionné ou le nom et l'état de santé du Soldat selectionné
@@ -115,6 +117,7 @@ public class ArmadaController implements Initializable {
                 nameSelect.setText(armada.get(selecte).troupeAssign(selectesol));
                 hpSelect.setText(armada.get(selecte).troupeAssignStatut(selectesol)+"");
             }
+            erreur.setText("");
         });
         nameSelect.setOnKeyPressed(changeName ->{
             //Donne au General selectionné le nom donné dans le textfield ou donne au Soldat selectionné le nom ainsi que l'état de santé donné dans les textfiels en appuyant sur Entrée
@@ -141,6 +144,7 @@ public class ArmadaController implements Initializable {
                 }
                 if (selectesol == -1 && selecte != -1) {
                     armada.get(selecte).rename(nameSelect.getText());
+                    erreur.setText("");
                 }
                 boolean valeurcorrect = false;
                 if (selectesol != -1 && selecte != -1) {
@@ -149,10 +153,12 @@ public class ArmadaController implements Initializable {
                         valeurcorrect = true;
                     } catch (Exception e) {
                         valeurcorrect = false;
+                        erreur.setText("Valeur de point de vie incorrect");
                     }
                     if (valeurcorrect){
                         armada.get(selecte).renameSoldier(nameSelect.getText(), selectesol);
                         armada.get(selecte).setHealth(parseInt(hpSelect.getText()), selectesol);
+                        erreur.setText("");
                     }
                 }
                 treeRefresh();
@@ -181,10 +187,12 @@ public class ArmadaController implements Initializable {
                     valeurcorrect = true;
                 } catch (Exception e) {
                     valeurcorrect = false;
+                    erreur.setText("Valeur de point de vie incorrect");
                 }
                 if (selectesol != -1 && selecte != -1 && valeurcorrect) {
                     armada.get(selecte).renameSoldier(nameSelect.getText(), selectesol);
                     armada.get(selecte).setHealth(parseInt(hpSelect.getText()), selectesol);
+                    erreur.setText("");
                 }
                 treeRefresh();
                 nameSelect.clear();
@@ -220,6 +228,7 @@ public class ArmadaController implements Initializable {
                 armada.get(selecte).fired(selectesol);
             }
             treeRefresh();
+            erreur.setText("");
         });
     }
 }
