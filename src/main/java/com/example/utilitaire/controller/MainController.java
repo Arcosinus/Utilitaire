@@ -15,6 +15,8 @@ import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
     @FXML
+    private HBox menuWelcome;
+    @FXML
     private Menu menuIMCcalc;
     @FXML
     private Menu menuBiblio;
@@ -41,24 +43,25 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         main.getChildren().removeAll(formArmada,formIMCcalc,formRomain,formLibrary,formBHconverter);
+
         menuArmada.setOnMenuValidation(launcharmada ->{
-            main.getChildren().removeAll(formArmada,formIMCcalc,formRomain,formLibrary,formBHconverter);
+            main.getChildren().removeAll(formArmada,formIMCcalc,formRomain,formLibrary,formBHconverter,menuWelcome);
             main.getChildren().add(formArmada);
         });
         menuIMCcalc.setOnMenuValidation(launchIMC ->{
-            main.getChildren().removeAll(formArmada,formIMCcalc,formRomain,formLibrary,formBHconverter);
+            main.getChildren().removeAll(formArmada,formIMCcalc,formRomain,formLibrary,formBHconverter,menuWelcome);
             main.getChildren().add(formIMCcalc);
         });
         menuRomain.setOnMenuValidation(launchromain ->{
-            main.getChildren().removeAll(formArmada,formIMCcalc,formRomain,formLibrary,formBHconverter);
+            main.getChildren().removeAll(formArmada,formIMCcalc,formRomain,formLibrary,formBHconverter,menuWelcome);
             main.getChildren().add(formRomain);
         });
         menuBiblio.setOnMenuValidation(launchbiblio ->{
-            main.getChildren().removeAll(formArmada,formIMCcalc,formRomain,formLibrary,formBHconverter);
+            main.getChildren().removeAll(formArmada,formIMCcalc,formRomain,formLibrary,formBHconverter,menuWelcome);
             main.getChildren().add(formLibrary);
         });
         menuBHconverter.setOnMenuValidation(launchBHconverter ->{
-            main.getChildren().removeAll(formArmada,formIMCcalc,formRomain,formLibrary,formBHconverter);
+            main.getChildren().removeAll(formArmada,formIMCcalc,formRomain,formLibrary,formBHconverter,menuWelcome);
             main.getChildren().add(formBHconverter);
         });
         Yes.setOnAction(exit ->{
