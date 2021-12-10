@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -14,7 +15,7 @@
    <children>
       <AnchorPane fx:id="ancLibrary" prefHeight="379.0" prefWidth="640.0">
          <children>
-            <TableView fx:id="tblViewBooks" layoutX="2.0" layoutY="23.0" prefHeight="310.0" prefWidth="441.0">
+            <TableView fx:id="tblViewBooks" layoutX="2.0" layoutY="23.0" prefHeight="223.0" prefWidth="441.0">
               <columns>
                   <TableColumn fx:id="tabTitle" maxWidth="1000.0" minWidth="5.0" prefWidth="60.0" text="Title" />
                   <TableColumn fx:id="tabAuthor" maxWidth="1000.0" minWidth="5.0" prefWidth="60.0" text="Author" />
@@ -33,7 +34,8 @@
                         <Label fx:id="lblColumn" styleClass="aligneLabel3" stylesheets="@style.css" text="Column" />
                         <Label fx:id="lblRow" styleClass="aligneLabel4" stylesheets="@style.css" text="Row" />
                         <Label fx:id="lblPublication" styleClass="aligneLabel5" stylesheets="@style.css" text="Publication" />
-                        <Label fx:id="lblPSummary" styleClass="aligneLabel6" stylesheets="@style.css" text="Plot Summary" />
+                        <Label fx:id="lblURL" styleClass="aligneLabel6" stylesheets="@style.css" text="URL" />
+                        <Label fx:id="lblPSummary" styleClass="aligneLabel7" stylesheets="@style.css" text="Plot Summary" />
                      </children>
                   </VBox>
                   <VBox prefHeight="229.0" prefWidth="88.0">
@@ -43,19 +45,21 @@
                         <TextField fx:id="txtColumn" />
                         <TextField fx:id="txtRow" />
                         <TextField fx:id="txtPublication" />
+                        <TextField fx:id="txtURL" />
                         <TextArea fx:id="txtAPSummary" prefHeight="200.0" prefWidth="200.0" />
                         <Button fx:id="btnSendBook" mnemonicParsing="false" text="Go!" />
                      </children>
                   </VBox>
                </children>
             </HBox>
-            <HBox layoutX="131.0" layoutY="335.0" prefHeight="38.0" prefWidth="97.0">
+            <HBox layoutX="8.0" layoutY="246.0" prefHeight="38.0" prefWidth="97.0">
                <children>
                   <Button fx:id="btnAdd" mnemonicParsing="false" text="+" />
                   <Button fx:id="btnDelete" mnemonicParsing="false" text="-" />
                </children>
             </HBox>
             <Label fx:id="lblError" layoutX="326.0" layoutY="335.0" prefHeight="17.0" prefWidth="0.0" />
+            <ImageView fx:id="imgView" fitHeight="128.0" fitWidth="195.0" layoutX="248.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
    </children>

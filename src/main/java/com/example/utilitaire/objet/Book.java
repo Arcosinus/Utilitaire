@@ -7,14 +7,16 @@ public class Book {
     private int row;
     private String publication;
     private String plotSummary;
+    private String url;
 
     // Book constructor
-    public Book(String title, String author, int column, int row, String publication, String plotSummary) {
+    public Book(String title, String author, int column, int row, String publication, String url, String plotSummary) {
         this.title = title;
         this.autor = author;
         this.column = column;
         this.row = row;
         this.publication = publication;
+        this.url = url;
         this.plotSummary = plotSummary;
     }
 
@@ -32,6 +34,7 @@ public class Book {
     public int getRow() {
         return row;
     }
+    public String getUrl() { return url; }
     public String getPublication() {
         return publication;
     }
@@ -52,6 +55,7 @@ public class Book {
     public void setRow(int row) {
         this.row = row;
     }
+    public void setUrl(String url) { this.url = url; }
     public void setPublication(String publication) {
         this.publication = publication;
     }

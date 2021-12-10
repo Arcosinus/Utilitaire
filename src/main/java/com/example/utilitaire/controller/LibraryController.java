@@ -5,11 +5,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -47,14 +48,19 @@ public class LibraryController implements Initializable {
     @FXML
     public TextField txtTitle;
     @FXML
+    public TextField txtURL;
+    @FXML
     private TextArea txtAPSummary;
     @FXML
     private HBox bookInputForm;
     @FXML
     private AnchorPane ancLibrary;
+    @FXML
+    private ImageView imgView;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Create necessary resources for the app
         ArrayList<Book> bookArrayList = new ArrayList<Book>();
         tabTitle.setCellValueFactory(new PropertyValueFactory<Book, String>("title"));
         tabAuthor.setCellValueFactory(new PropertyValueFactory<Book, String>("autor"));
@@ -63,6 +69,7 @@ public class LibraryController implements Initializable {
         tabPublication.setCellValueFactory(new PropertyValueFactory<Book, String>("publication"));
         tabPlotSummary.setCellValueFactory(new PropertyValueFactory<Book, String>("plotSummary"));
 
+        // Clear and empty form
         ancLibrary.getChildren().removeAll(bookInputForm);
         btnAdd.setOnMouseClicked(launchForm -> {
             lblError.setText("");
@@ -71,6 +78,7 @@ public class LibraryController implements Initializable {
             txtColumn.clear();
             txtRow.clear();
             txtPublication.clear();
+            txtURL.clear();
             txtAPSummary.clear();
 
             if(!ancLibrary.getChildren().contains(bookInputForm)) {
@@ -79,6 +87,7 @@ public class LibraryController implements Initializable {
             }
         });
 
+        // Create new instances of book and add them to the table
         btnSendBook.setOnMouseClicked(sendBook -> {
             Book newBook = null;
 
@@ -88,6 +97,7 @@ public class LibraryController implements Initializable {
                 txtColumn.clear();
                 txtRow.clear();
                 txtPublication.clear();
+                txtURL.clear();
                 txtAPSummary.clear();
                 ancLibrary.getChildren().removeAll(bookInputForm);
                 lblError.setText("Please enter numerical value for column (1 to 5)");
@@ -98,6 +108,7 @@ public class LibraryController implements Initializable {
                 txtColumn.clear();
                 txtRow.clear();
                 txtPublication.clear();
+                txtURL.clear();
                 txtAPSummary.clear();
                 ancLibrary.getChildren().removeAll(bookInputForm);
                 lblError.setText("Please enter numerical value for row (1 to 7)");
@@ -119,6 +130,7 @@ public class LibraryController implements Initializable {
                 txtColumn.clear();
                 txtRow.clear();
                 txtPublication.clear();
+                txtURL.clear();
                 txtAPSummary.clear();
                 ancLibrary.getChildren().removeAll(bookInputForm);
             }
@@ -130,6 +142,7 @@ public class LibraryController implements Initializable {
                 txtColumn.clear();
                 txtRow.clear();
                 txtPublication.clear();
+                txtURL.clear();
                 txtAPSummary.clear();
                 ancLibrary.getChildren().removeAll(bookInputForm);
                 lblError.setText("Please enter a valid date");
@@ -137,7 +150,7 @@ public class LibraryController implements Initializable {
             } else {
                 if (tblViewBooks.getSelectionModel().getSelectedItem() == null) {
                     try {
-                        newBook = new Book(txtTitle.getText(), txtAuthor.getText(), Integer.parseInt(txtColumn.getText()), Integer.parseInt(txtRow.getText()), txtPublication.getText(), txtAPSummary.getText());
+                        newBook = new Book(txtTitle.getText(), txtAuthor.getText(), Integer.parseInt(txtColumn.getText()), Integer.parseInt(txtRow.getText()), txtPublication.getText(), txtURL.getText(), txtAPSummary.getText());
                         bookArrayList.add(newBook);
                         tblViewBooks.getItems().add(newBook);
                         txtTitle.clear();
@@ -145,6 +158,7 @@ public class LibraryController implements Initializable {
                         txtColumn.clear();
                         txtRow.clear();
                         txtPublication.clear();
+                        txtURL.clear();
                         txtAPSummary.clear();
                         ancLibrary.getChildren().removeAll(bookInputForm);
                     } catch (Exception e) {
@@ -175,6 +189,7 @@ public class LibraryController implements Initializable {
                     txtColumn.clear();
                     txtRow.clear();
                     txtPublication.clear();
+                    txtURL.clear();
                     txtAPSummary.clear();
                     ancLibrary.getChildren().removeAll(bookInputForm);
                 }
@@ -210,6 +225,7 @@ public class LibraryController implements Initializable {
             txtColumn.clear();
             txtRow.clear();
             txtPublication.clear();
+            txtURL.clear();
             txtAPSummary.clear();
             ancLibrary.getChildren().removeAll(bookInputForm);
         });
