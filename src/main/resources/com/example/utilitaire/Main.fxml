@@ -77,6 +77,7 @@
             <fx:include fx:id="formLibrary" source="library.fxml" />
              <fx:include fx:id="formArmada" source="Armada.fxml" />
             <fx:include fx:id="formBHconverter" source="ConvertionBase.fxml" />
+            <fx:include fx:id="menuWelcome" source="menuBonjour.fxml" />
          </children></AnchorPane>
   </children>
 </VBox>
