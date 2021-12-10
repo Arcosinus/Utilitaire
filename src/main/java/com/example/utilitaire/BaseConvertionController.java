@@ -31,6 +31,8 @@ public class BaseConvertionController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        //création des list de valeure et instanciation des objets bases
         List<Character> hexaList = List.of('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F');
         List<Character> binaryList = List.of('0', '1');
         List<Character> decaList = List.of('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
@@ -39,13 +41,14 @@ public class BaseConvertionController implements Initializable {
         Bases hexa = new Bases("hexadecimal", hexaList);
         Bases binary = new Bases("binary", binaryList);
 
+        //ajout des objets aux combobox
         baseConverted.getItems().addAll(deca, hexa, binary);
         baseToConvert.getItems().addAll(deca, hexa, binary);
 
         baseToConvert.setPromptText("Convert from");
         baseConverted.setPromptText("Convert to");
 
-
+        //Le converter permet d'afficher les objets par leur nom dans la combobox
         StringConverter baseDisplay = new StringConverter<Bases>() {
             public String toString(Bases bases) {
                 return bases.getName();
@@ -56,10 +59,11 @@ public class BaseConvertionController implements Initializable {
             }
         };
 
+        //on associe le converteur aux combobox
         baseConverted.setConverter(baseDisplay);
         baseToConvert.setConverter(baseDisplay);
 
-
+        //On refresh les valeures quand on tape les valeures et quand on change de choix dans les combobox
         baseConverted.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
             Refresh(baseConverted, baseToConvert, inputConverted, inputToConvert);
         });
@@ -80,7 +84,7 @@ public class BaseConvertionController implements Initializable {
 
     }
 
-
+    //fonction refresh qui appel la fonction convertion avec les bons paramètres et vérifie les inputs
     public static void Refresh(ComboBox<Bases> baseToConvert, ComboBox<Bases> baseConverted, TextField inputToConvert, TextField inputConverted) {
         if (inputToConvert.getText().equals("")) {
             inputConverted.setText("");
@@ -101,7 +105,7 @@ public class BaseConvertionController implements Initializable {
         }
     }
 
-
+    //Fonction de convertion de Base à base quelle quelle soit
     public static String Converter(String inputNombre, List<Character> baseToConvertValues, List<Character> wantedBaseValues) {
         System.out.println(inputNombre);
         int reste;

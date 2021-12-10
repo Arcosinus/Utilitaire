@@ -1,6 +1,7 @@
 package com.example.utilitaire.objet;
 
 import java.util.List;
+//objet base qui défini 2 caractéristique le nom de la base et son tableaux de valeures possibles
 
 public class Bases {
     String name;
@@ -12,18 +13,10 @@ public class Bases {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public List<Character> getValues() {
         return values;
     }
-
-    public void setValues(List<Character> values) {
-        this.values = values;
-    }
-
 
 
 

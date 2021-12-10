@@ -21,18 +21,21 @@ public class RomainController implements Initializable {
     private TextField inputNombre;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+    //On refresh La valeure du textifield chiffres Romains a chaque lettres tapé dans chiffres
         inputNombre.setOnKeyTyped(CtoR -> {
 
             List<Character> chiffres = Arrays.asList('0','1', '2', '3', '4', '5', '6', '7', '8', '9');
 
-
+            //on fait en sorte que l'utilisateur ne puisse rentrer que des caractères numériques
+            //dans le textfield chiffre.Si le craractère rentré n'est pas dans la liste chiffres il est
+            //retiré
             for (int i = 0; i < inputNombre.getLength() ; i++) {
                 if (!chiffres.contains(inputNombre.getText().charAt(i)))
                 {
                     inputNombre.setText(inputNombre.getText().replace(inputNombre.getText().substring(i, i+1), ""));
                 }
             }
+            //On ne fait le calcul dans le textfield Chiffres romain que si l'input n'est pas nul
             if (inputNombre.getText().length() > 0) {
                 try {
                     inputChiffresRomains.setText(ChiffresToRomain(Integer.parseInt(inputNombre.getText())));
@@ -41,12 +44,13 @@ public class RomainController implements Initializable {
                     inputNombre.setText("Incorrect roman number");
                 }
             }
-
+            //Sinon le textfield Chiffres romain est set à nul
             else {
                 inputChiffresRomains.setText("");
             }
         });
 
+        //Idem pour le textfield Chiffres Romains
         inputChiffresRomains.setOnKeyTyped(RtoC -> {
             List<Character> chiffresRomains = Arrays.asList('I', 'V', 'X', 'L', 'C', 'D', 'M');
 
