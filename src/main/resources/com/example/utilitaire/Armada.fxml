@@ -10,23 +10,27 @@
 
 <HBox fx:id="stage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.utilitaire.controller.ArmadaController">
    <children>
-      <HBox prefHeight="100.0" prefWidth="200.0">
+      <VBox prefHeight="380.0" prefWidth="200.0">
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <HBox prefHeight="50.0" prefWidth="200.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="25.0" prefWidth="100.0" text="Nom" />
-                  <Label alignment="CENTER" prefHeight="25.0" prefWidth="100.0" text="Point de vie" />
+                  <VBox prefHeight="50.0" prefWidth="100.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="25.0" prefWidth="100.0" text="Nom" />
+                        <Label alignment="CENTER" prefHeight="25.0" prefWidth="100.0" text="Point de vie" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="50.0" prefWidth="100.0">
+                     <children>
+                        <TextField fx:id="nameSelect" />
+                        <TextField fx:id="hpSelect" />
+                     </children>
+                  </VBox>
                </children>
-            </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <TextField fx:id="nameSelect" />
-                  <TextField fx:id="hpSelect" />
-                  <Label fx:id="erreur" alignment="CENTER" prefHeight="17.0" prefWidth="320.0" text="" />
-               </children>
-            </VBox>
+            </HBox>
+            <Label fx:id="erreur" alignment="CENTER" prefHeight="17.0" prefWidth="320.0" text="" />
          </children>
-      </HBox>
+      </VBox>
       <TreeView fx:id="treemada" prefHeight="380.0" prefWidth="440.0">
          <contextMenu>
             <ContextMenu>
