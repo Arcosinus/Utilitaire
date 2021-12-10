@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
@@ -7,6 +8,8 @@
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <HBox fx:id="stage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.utilitaire.controller.ArmadaController">
    <children>
@@ -29,6 +32,19 @@
                </children>
             </HBox>
             <Label fx:id="erreur" alignment="CENTER" prefHeight="17.0" prefWidth="320.0" text="" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" Army Simulator" wrappingWidth="169.21630859375">
+               <font>
+                  <Font size="25.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="15.0" top="250.0" />
+               </VBox.margin>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="v.12093">
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
+            </Text>
          </children>
       </VBox>
       <TreeView fx:id="treemada" prefHeight="380.0" prefWidth="440.0">
