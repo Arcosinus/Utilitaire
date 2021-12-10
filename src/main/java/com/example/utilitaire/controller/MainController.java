@@ -1,7 +1,5 @@
 package com.example.utilitaire.controller;
 
-import com.example.utilitaire.objet.Book;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Menu;
@@ -38,10 +36,6 @@ public class MainController implements Initializable {
         menuLib.setOnMenuValidation(launchLibrary -> {
             main.getChildren().removeAll(formLib,formIMCcalc);
             main.getChildren().add(formLib);
-        });
-
-        Yes.setOnAction(exit ->{
-            Platform.exit();
         });
     }
 }
