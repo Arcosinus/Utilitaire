@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -85,18 +86,18 @@ public class BaseConvertionController implements Initializable {
             inputConverted.setText("");
         }
 
-        if (!baseToConvert.getValue().getValues().contains(inputToConvert.getText().charAt(inputToConvert.getLength()-1)))
-        {
-            inputToConvert.setText(inputToConvert.getText().substring(0, inputToConvert.getLength()-1));
+        for (int i = 0; i < inputToConvert.getLength() ; i++) {
+            if (!baseToConvert.getValue().getValues().contains(inputToConvert.getText().charAt(i)))
+            {
+                inputToConvert.setText(inputToConvert.getText().replace(inputToConvert.getText().substring(i, i+1), ""));
+            }
         }
+
+
 
 
         if (inputToConvert.getText().length() > 0) {
             inputConverted.setText(Converter(inputToConvert.getText(), baseToConvert.getValue().getValues(), baseConverted.getValue().getValues()));
-
-            if (!inputToConvert.getText().equals(Converter(inputConverted.getText(), baseConverted.getValue().getValues(), baseToConvert.getValue().getValues()))) {
-                inputConverted.setText("please enter a correct " + baseToConvert.getValue().getName() + " number");
-            }
         }
     }
 
@@ -129,12 +130,10 @@ public class BaseConvertionController implements Initializable {
             nombre = (int) nombre / resultBase;
             System.out.println(reste);
             baseConvertionResultTable.add(0, Integer.toString(reste));
-            //System.out.println(baseConvertionResultTable);
         }
 
         for (String s : baseConvertionResultTable) {
             result = result + wantedBaseValues.get(Integer.parseInt(s));
-            //System.out.println(result);
         }
 
         return result;

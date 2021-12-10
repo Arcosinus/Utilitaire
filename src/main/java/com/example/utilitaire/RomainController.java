@@ -23,12 +23,22 @@ public class RomainController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         inputNombre.setOnKeyTyped(CtoR -> {
+
+            List<Character> chiffres = Arrays.asList('0','1', '2', '3', '4', '5', '6', '7', '8', '9');
+
+
+            for (int i = 0; i < inputNombre.getLength() ; i++) {
+                if (!chiffres.contains(inputNombre.getText().charAt(i)))
+                {
+                    inputNombre.setText(inputNombre.getText().replace(inputNombre.getText().substring(i, i+1), ""));
+                }
+            }
             if (inputNombre.getText().length() > 0) {
                 try {
                     inputChiffresRomains.setText(ChiffresToRomain(Integer.parseInt(inputNombre.getText())));
                 }
                 catch (Exception e){
-                    inputNombre.setText("Please enter only numbers");
+                    inputNombre.setText("Incorrect roman number");
                 }
             }
 
@@ -38,6 +48,14 @@ public class RomainController implements Initializable {
         });
 
         inputChiffresRomains.setOnKeyTyped(RtoC -> {
+            List<Character> chiffresRomains = Arrays.asList('I', 'V', 'X', 'L', 'C', 'D', 'M');
+
+            for (int i = 0; i < inputChiffresRomains.getLength() ; i++) {
+                if (!chiffresRomains.contains(inputChiffresRomains.getText().charAt(i)))
+                {
+                    inputChiffresRomains.setText(inputChiffresRomains.getText().replace(inputChiffresRomains.getText().substring(i, i+1), ""));
+                }
+            }
             if (inputChiffresRomains.getText().length()>0 ){
             inputNombre.setText(RomainToChiffres(inputChiffresRomains.getText()));}
             else {
@@ -56,10 +74,10 @@ public class RomainController implements Initializable {
 
         //initialization de deux tableaux contenant la liste des chiffres romain par ordre croissant
         //et des valeures conrespondantes en base 10 avec index concordants (I et 1 sont tout deux à l'index 0).
+
+
         List<Integer> chiffres = Arrays.asList(1, 5, 10, 50, 100, 500, 1000);
         List<String> chiffresRomains = Arrays.asList("I", "V", "X", "L", "C", "D", "M");
-
-
 
 
         //On définit le niveau du premier chiffre romain de l'input c'est à dire son index (ind) dans le tableau des chiffres
@@ -97,12 +115,11 @@ public class RomainController implements Initializable {
             else {
                 convertion = convertion + chiffres.get(level);
             }
-            System.out.println("intération : " + i + "  current level is : " + level + "    la convertion vaut : " + convertion);
         }
         if (ChiffresToRomain(convertion).equals(processedChiffresRomains)){
         return Integer.toString(convertion);}
         else {
-            return "please return a correct roman number";
+            return "incorrect roman number";
         }
     }
 
@@ -152,7 +169,7 @@ public class RomainController implements Initializable {
 
         }
         else {
-            convertion = "please enter a number between 1 and 3999";
+            convertion = "Number is too large ";
         }
 
         return convertion;
