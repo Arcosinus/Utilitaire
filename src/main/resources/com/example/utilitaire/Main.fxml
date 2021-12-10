@@ -42,17 +42,23 @@
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
-            <Menu mnemonicParsing="false" text="Biblio" />
+            <Menu fx:id="menuBiblio" mnemonicParsing="false" text="Biblio">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+               </items></Menu>
         <Menu fx:id="menubinary" mnemonicParsing="false" text="Convert Binaire" />
             <Menu mnemonicParsing="false" text="Convert Hexa" />
-            <Menu mnemonicParsing="false" text="Convert Romain" />
+            <Menu fx:id="menuRomain" mnemonicParsing="false" text="Convert Romain" />
             <Menu fx:id="menuIMCcalc" mnemonicParsing="false" text="IMC">
                <items>
                   <MenuItem mnemonicParsing="false" text="Calcul de l'IMC" />
                </items></Menu>
-            <Menu mnemonicParsing="false" text="Armée" />
+            <Menu fx:id="menuArmada" mnemonicParsing="false" text="Armée">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Créer et gérer votre propre armée" />
+               </items></Menu>
             <Menu mnemonicParsing="false" text="|" />
-            <Menu mnemonicParsing="false" text="   Close App">
+            <Menu mnemonicParsing="false" text="Close App">
                <items>
                   <MenuItem fx:id="Yes" mnemonicParsing="false" text="Yes" />
                   <MenuItem fx:id="No" mnemonicParsing="false" text="No" />
@@ -61,7 +67,10 @@
     </MenuBar>
     <AnchorPane fx:id="main" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
+            <fx:include fx:id="formRomain" source="ConvertionRomain.fxml" />
             <fx:include fx:id="formIMCcalc" source="CalcIMC.fxml" />
+            <fx:include fx:id="formLibrary" source="library.fxml" />
+             <fx:include fx:id="formArmada" source="Armada.fxml" />
          </children></AnchorPane>
   </children>
 </VBox>
